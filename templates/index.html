@@ -3,19 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
+    <title>Todo list</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Todo List</h1>
-    <ul>
-        {% for task in tasks %}
-        <li>{{ task }}</li>
-        {% endfor %}
-    </ul>
-    <form action="/add_task" method="POST">
-        <input type="text" name="task">
-        <button type="submit">Add Task</button>
-    </form>
+
+    <div class="container">
+        <h1>Todo list</h1>
+        <ul>
+            {% for task in tasks %}
+            <li {% if task.completed %}class="completed"{% endif %}>
+                {{ task.description }}
+                {% if not task.completed %}
+                <a class="complete_btn" href="{{ url_for('complete_task', index=loop.index0) }}" class="complete-link">✅</a>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        <form class="task_adding" action="/add_task" method="POST">
+            <input class="task-input" type="text" name="task" placeholder="Enter your task...">
+            <button class="add_task_btn" type="submit">➕</button>
+        </form>
+        <form action="/clear_completed_tasks" method="POST">
+            <button class="clear_button" type="submit">Clear completed</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const completeLinks = document.querySelectorAll('.complete-link');
+
+            completeLinks.forEach(completeLink => {
+                completeLink.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    fetch(completeLink.href)
+                        .then(response => {
+                            if (response.redirected) {
+                                window.location.href = response.url;
+                            }
+                        })
+                        .catch(error => console.error('Error completing task:', error));
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
+

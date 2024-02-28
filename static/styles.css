@@ -1,11 +1,29 @@
 body {
     font-family: Arial, sans-serif;
+    font-family: "Shantell Sans", cursive;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 40%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
+    text-align: center;
     color: #333;
 }
 
@@ -18,21 +36,73 @@ li {
     background-color: #fff;
     padding: 10px;
     margin-bottom: 5px;
+    font-size: 25px;
 }
 
-form {
+.completed {
+    text-decoration: line-through;
+}
+
+.task-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.task-input:focus {
+    border-color: #007bff;
+}
+
+.task-input::placeholder {
+    color: #aaa;
+}
+
+.task-input:focus::placeholder {
+    color: transparent;
+}
+
+.complete_btn {
+    margin-left: 20px;
+    display: inline-block;
+    padding: 5px 5px;
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.task_adding {
     margin-top: 20px;
+    display: flex;
 }
 
 input[type="text"] {
+    tex-align: center;
+    font-family: "Shantell Sans", cursive;
     width: 200px;
     padding: 5px;
 }
 
-button {
+.add_task_btn {
     padding: 5px 10px;
-    background-color: #008cba;
-    color: #fff;
-    border: none;
+    margin-left: 15px;
+    background-color: #fff;
     cursor: pointer;
+    border: 1px solid #c4c4c4;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.clear_button {
+    text-decoration: none;
+    all: initial;
+    padding: 5px 10px;
+    margin-top: 30px;
+    background-color: #fff;
+    color: red;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: "Shantell Sans", cursive;
 }
