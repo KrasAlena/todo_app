@@ -1,5 +1,5 @@
 # TODO List
-<img src="to-do-list.png" width="40" height="40">
+<img src="to-do-list.png" width="50" height="50">
 
 ## Console version
 
@@ -51,6 +51,7 @@ The TaskManager class manages a list of tasks with the following methods:
 >The program avoids saving duplicate completed tasks to the file by maintaining a set of saved completed tasks.
 
 ## Web version
+<img src="web_app.png" width="350">
 
 This Python web application provides a simple todo list manager with a user-friendly interface. It allows users to add tasks, mark tasks as completed, and clear completed tasks.
 
