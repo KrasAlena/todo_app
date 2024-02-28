@@ -15,6 +15,7 @@ class Task:
         self.completed = True
         self.date_completed = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
+
 class TaskManager:
     def __init__(self):
         self.tasks = []
@@ -29,6 +30,26 @@ class TaskManager:
         self.tasks[index].complete()
 
     def clear_completed_tasks(self):
+        """
+            Clears completed tasks by moving them to a separate file and removing them from the current task list.
+
+            This function iterates over the list of tasks, identifies the completed tasks, and writes their details
+            (description, date added, date completed) to a JSON file. Afterward, it removes the completed tasks from
+            the current task list.
+
+            Parameters:
+                None
+
+            Returns:
+                None
+
+            Side Effects:
+                - Writes completed task details to a JSON file.
+                - Modifies the task list by removing completed tasks.
+
+            Example Usage:
+                clear_completed_tasks()
+            """
         completed_tasks = [task for task in self.tasks if task.completed]
         if completed_tasks:
             with open(self.completed_tasks_file, 'a') as file:
@@ -41,7 +62,13 @@ class TaskManager:
                     file.write(json.dumps(task_data) + '\n')
             self.tasks = [task for task in self.tasks if not task.completed]
 
+
+
 task_manager = TaskManager()
+
+for task in task_manager.tasks:
+    print(task.description)
+
 
 @app.route('/')
 def index():
