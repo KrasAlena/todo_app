@@ -18,7 +18,7 @@
             <li {% if task.completed %}class="completed"{% endif %}>
                 {{ task.description }}
                 {% if not task.completed %}
-                <a class="complete_btn" href="{{ url_for('complete_task', index=loop.index0) }}">✅</a>
+                <a class="complete_btn complete-link" href="{{ url_for('complete_task', index=loop.index0) }}">✅</a>
                 {% endif %}
             </li>
             {% endfor %}
