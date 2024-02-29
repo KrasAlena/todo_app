@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 
+
 class Task:
     def __init__(self, description):
         self.description = description
@@ -15,6 +16,7 @@ class Task:
     def __str__(self):
         status = 'Completed' if self.completed else 'Pending'
         return f'{self.description} - {status}'
+
 
 class TaskManager:
     def __init__(self):
@@ -78,7 +80,7 @@ class TaskManager:
                 completed_task_data = {'description': task.description, 'completed': task.completed, 'completion_time': completion_time}
                 if tuple(completed_task_data.items()) not in self.saved_completed_tasks:
                     completed_tasks.append(completed_task_data)
-                    self.saved_completed_tasks.add(tuple(completed_task_data.items()))  # Add tuple to saved set
+                    self.saved_completed_tasks.add(tuple(completed_task_data.items()))
 
         with open(filename, 'a') as file:
             for task_data in completed_tasks:
@@ -99,6 +101,7 @@ class TaskManager:
                 task.completed = task_data['completed']
                 manager.tasks.append(task)
         return manager
+
 
 def main():
     task_manager = TaskManager()
@@ -137,6 +140,7 @@ def main():
             break
         else:
             print('Invalid choice. Please try again.')
+
 
 if __name__ == '__main__':
     main()

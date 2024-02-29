@@ -32,25 +32,6 @@
         </form>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const completeLinks = document.querySelectorAll('.complete-link');
-
-            completeLinks.forEach(completeLink => {
-                completeLink.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    fetch(completeLink.href)
-                        .then(response => {
-                            if (response.redirected) {
-                                window.location.href = response.url;
-                            }
-                        })
-                        .catch(error => console.error('Error completing task:', error));
-                });
-            });
-        });
-    </script>
-
 </body>
 </html>
 

@@ -22,7 +22,7 @@ class TaskManager:
         self.completed_tasks_file = 'completed_tasks.json'
 
     def add_task(self, description):
-        if description.strip():  # Check if description is not empty after stripping whitespace
+        if description.strip():
             task = Task(description)
             self.tasks.append(task)
 
@@ -63,7 +63,6 @@ class TaskManager:
             self.tasks = [task for task in self.tasks if not task.completed]
 
 
-
 task_manager = TaskManager()
 
 for task in task_manager.tasks:
@@ -74,16 +73,19 @@ for task in task_manager.tasks:
 def index():
     return render_template('index.html', tasks=task_manager.tasks)
 
+
 @app.route('/add_task', methods=['POST'])
 def add_task():
     description = request.form['task']
     task_manager.add_task(description)
     return redirect(url_for('index'))
 
+
 @app.route('/complete_task/<int:index>')
 def complete_task(index):
     task_manager.complete_task(index)
     return redirect(url_for('index'))
+
 
 @app.route('/clear_completed_tasks', methods=['GET', 'POST'])
 def clear_completed_tasks():
@@ -91,9 +93,7 @@ def clear_completed_tasks():
         task_manager.clear_completed_tasks()
         return redirect(url_for('index'))
     else:
-        # Handle GET request (if needed)
         pass
-
 
 
 if __name__ == '__main__':
